@@ -2,13 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos> 
+     #<home-manager/nixos> 
+      inputs.home-manager.nixosModules.default
     ];
 
   # Bootloader.
@@ -23,7 +24,8 @@
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
   
-  
+  nix.settings.experimental-features = [ "nix-command" "flakes"];
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -87,7 +89,7 @@
   # Configure console keymap
   console.keyMap = "la-latin1";
 
-
+/*
   home-manager.users.samce = {
     home.stateVersion = "23.11"; # Usa la versión con la que iniciaste o la actual
     home.pointerCursor = {
@@ -103,7 +105,7 @@
     userEmail = "sergioalejandro.moreno04@gmail.com";
   };
   };
-
+*/
   environment.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
@@ -154,6 +156,13 @@
     description = "samce";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
+  };
+
+  home manager = {
+    specialArgs = { inherit inputs; };
+    users = {
+      "samce" = import ./home.nix;
+    };
   };
 
   # Allow unfree packages
