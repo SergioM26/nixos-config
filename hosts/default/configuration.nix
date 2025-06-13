@@ -170,7 +170,7 @@
   
 
   home-manager = {
-    #specialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs; };
     users = {
       "samce" = import ./home.nix;
     };
