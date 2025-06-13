@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on
+#Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -8,8 +8,15 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-     #<home-manager/nixos> 
-      inputs.home-manager.nixosModules.default
+
+      #../../modules/nixos/hyprland.nix
+   #   ../../modules/nixos/pipewire.nix
+   #   ../../modules/nixos/zsh.nix
+   #   ../../modules/nixos/base.nix
+
+      inputs.home-manager.nixosModules.home-manager
+
+      #./home.nix
     ];
 
   # Bootloader.
@@ -150,16 +157,20 @@
 
  
 
+  
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  
   users.users.samce = {
     isNormalUser = true;
     description = "samce";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
   };
+  
+  
 
-  home manager = {
-    specialArgs = { inherit inputs; };
+  home-manager = {
+    #specialArgs = { inherit inputs; };
     users = {
       "samce" = import ./home.nix;
     };
@@ -205,6 +216,11 @@
     vscode
     zsh-powerlevel10k
     git
+    tree
+    gdb
+    code-cursor
+    jetbrains.idea-community
+    nodejs_20
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
