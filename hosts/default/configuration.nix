@@ -12,6 +12,9 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  # System version
+  system.stateVersion = "25.11";
+
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -42,7 +45,7 @@
 
   # Desktop environment
   services.xserver.enable = true;
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   programs.hyprland.enable = true;
 
   # User configuration
