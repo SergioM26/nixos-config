@@ -35,7 +35,7 @@
   # Shell configuration
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
+  #environment.shells = with pkgs; [ zsh ];
 
   # Time and locale
   time.timeZone = "America/Monterrey";
@@ -61,17 +61,17 @@
     users = {
       "samce" = import ../../home/samce.nix;
     };
-    # Configuración de respaldo para archivos
-    backupFileExtension = "backup";
     useGlobalPkgs = true;
     useUserPackages = true;
+    backupFileExtension = "backup";
   };
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # System packages
   environment.systemPackages = with pkgs; [
     # Shell
     zsh
-    zsh-powerlevel10k
+    starship
     
     # Desktop
     wofi

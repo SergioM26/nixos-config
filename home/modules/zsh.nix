@@ -4,20 +4,27 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    #enableBashCompletion = true; 
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
     history = {
       size = 10000;
     };
-    autocd = true;
+
+    autocd = true; 
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "dirhistory" "history" ];
+      plugins = [
+        "git"
+        "history"
+        "dirhistory"
+      ];
     };
+  };
 
-    initContent = ''
-      source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    '';
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
   };
 } 
