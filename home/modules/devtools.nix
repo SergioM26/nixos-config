@@ -19,5 +19,7 @@
     
     # Herramientas de sistema
     tree
+    yazi
+    pywal
   ];
 } 

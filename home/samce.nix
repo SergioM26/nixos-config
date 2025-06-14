@@ -14,6 +14,14 @@
   home.username = "samce";
   home.homeDirectory = "/home/samce";
 
+  # Font configuration
+  fonts.fontconfig.enable = true;
+
+  # Home packages
+  home.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+  ];
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -25,13 +33,6 @@
 
   # Allow unfree packages in home-manager
   nixpkgs.config.allowUnfree = true;
-
-  # The home.packages option allows you to install Nix packages into your
-  # environment.
-  home.packages = with pkgs; [
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-  ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -49,17 +50,15 @@
 
     ".config/hypr/hyprpaper.conf" = {
       text = ''
-        preload = ~/nixos-config/wallpapers/toph-wallpaper.png
-        wallpaper = ,~/nixos-config/wallpapers/toph-wallpaper.png
+        preload = ~/nixos-config/wallpapers/Avatar-Wan.jpg
+        wallpaper = ,~/nixos-config/wallpapers/Avatar-Wan.jpg
       '';
-      force = true;
     };
     ".config/hypr/hyprland.conf" = {
       text = ''
         exec-once = hyprpaper
         # Otras configuraciones que ya tengas…
       '';
-      force = true;
     };
   };
 
