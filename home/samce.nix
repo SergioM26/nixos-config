@@ -20,8 +20,9 @@
   # Home packages
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
+    swww
+    #jq
   ];
-
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -46,20 +47,22 @@
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    # ''
+      ".config/hypr/pywal.sh".text = ''
+        #!/bin/bash
 
-    ".config/hypr/hyprpaper.conf" = {
-      text = ''
-        preload = ~/nixos-config/wallpapers/Avatar-Wan.jpg
-        wallpaper = ,~/nixos-config/wallpapers/Avatar-Wan.jpg
+        export WALLPAPER=$(find ~/nixos-config/wallpapers -type f | shuf -n 1)
+
+        # Iniciar swww si no está corriendo
+        if ! pgrep -x swww > /dev/null; then
+            swww-daemon &
+            sleep 1
+        fi
+             
+        # Aplicar el fondo
+        swww img "$WALLPAPER"
       '';
-    };
-    ".config/hypr/hyprland.conf" = {
-      text = ''
-        exec-once = hyprpaper
-        # Otras configuraciones que ya tengas…
-      '';
-    };
+    
   };
 
   # Home Manager can also manage your environment variables through
