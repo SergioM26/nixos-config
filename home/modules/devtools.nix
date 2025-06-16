@@ -7,19 +7,17 @@
     neovim
     vscode
     code-cursor
-    jetbrains.idea-community
-    
+    qtcreator
+ 
     # Herramientas de desarrollo
     git
     gcc
     gdb
     cmake
     gnumake
-    nodejs_20
     
     # Herramientas de sistema
     tree
     yazi
-    pywal
   ];
 } 

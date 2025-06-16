@@ -75,12 +75,13 @@
     
     # Desktop
     wofi
-    hyprpaper
     waybar
     pavucontrol
     spotify
     discord
     qt5.full
     nwg-look
+    playerctl
+    brightnessctl
   ];
 }
