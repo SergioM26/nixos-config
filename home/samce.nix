@@ -21,6 +21,8 @@
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
     swww
+    netflix
+    obsidian
     #jq
   ];
   # This value determines the Home Manager release that your configuration is
