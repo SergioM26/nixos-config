@@ -5,7 +5,7 @@
     # IDEs y editores
     vim
     neovim
-    vscode
+    #vscode
     code-cursor
     qtcreator
  
@@ -20,4 +20,6 @@
     tree
     yazi
   ];
+  programs.vscode.enable = true;
+  programs.vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ gcc]);
 } 

@@ -66,6 +66,7 @@
     backupFileExtension = "backup";
   };
   environment.pathsToLink = [ "/share/zsh" ];
+  
 
   # System packages
   environment.systemPackages = with pkgs; [
@@ -83,5 +84,10 @@
     nwg-look
     playerctl
     brightnessctl
+
+    wlogout
+    grim
+    slurp
+    hyprlock
   ];
 }

@@ -12,6 +12,7 @@
       core.editor = "nvim";
       color.ui = true;
       pull.rebase = true;
+      push.autoSetupRemote = true;
     };
     
     # Alias útiles
