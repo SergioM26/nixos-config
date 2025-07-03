@@ -25,6 +25,12 @@
     obsidian
     #jq
   ];
+
+  xdg.mimeApps = {
+    defaultApplications = {
+      "x-scheme-handler/https" = "chromium-browser.desktop";
+    };
+  };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -88,8 +94,8 @@
     XCURSOR_SIZE = "24";
   # EDITOR = "emacs";
 
-};
-home.pointerCursor = {
+  };
+  home.pointerCursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
       size = 24;
