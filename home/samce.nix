@@ -1,5 +1,7 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, system, inputs, ... }:
+let
+    system = "x86_64-linux";
+in
 {
   imports = [
     ./modules/zsh.nix
@@ -23,6 +25,7 @@
     swww
     netflix
     obsidian
+    inputs.zen-browser.packages.${system}.default 
     #jq
   ];
 
@@ -100,7 +103,7 @@
       name = "Bibata-Modern-Ice";
       size = 24;
       gtk.enable = true;
-    };
+  };
 
 
   # Let Home Manager install and manage itself.

@@ -81,6 +81,7 @@
     spotify
     discord
     qt5.full
+    pkgs.libsForQt5.layer-shell-qt
     nwg-look
     playerctl
     brightnessctl
