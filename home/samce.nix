@@ -26,14 +26,11 @@ in
     netflix
     obsidian
     inputs.zen-browser.packages.${system}.default 
+    socat
+    ddcutil
+    ddcui
     #jq
   ];
-
-  xdg.mimeApps = {
-    defaultApplications = {
-      "x-scheme-handler/https" = "chromium-browser.desktop";
-    };
-  };
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
