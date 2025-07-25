@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/pipewire.nix
     ../../modules/nixos/webserver.nix
+    #../../modules/nixos/hyprlock.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -73,7 +74,7 @@
     # Shell
     zsh
     starship
-    
+    direnv
     # Desktop
     wofi
     waybar
@@ -90,5 +91,6 @@
     grim
     slurp
     hyprlock
+    jq
   ];
 }
