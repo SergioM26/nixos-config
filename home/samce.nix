@@ -9,6 +9,7 @@ in
     ./modules/browser.nix
     ./modules/terminal.nix
     ./modules/git.nix
+    ./modules/tmux.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -33,6 +34,7 @@ in
     azahar
     jq
     anki
+    tmux
   ];
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
