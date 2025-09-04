@@ -22,8 +22,9 @@
       ];
     };
 
-    initExtra = ''
+    initContent = ''
       eval "$(direnv hook zsh)"
+	  export EDITOR=nvim
     '';
   };
 

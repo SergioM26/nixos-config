@@ -8,10 +8,10 @@ in
     ./modules/devtools.nix
     ./modules/browser.nix
     ./modules/terminal.nix
+	./modules/tmux.nix
     ./modules/git.nix
-    ./modules/tmux.nix
+	./modules/yazi.nix
   ];
-
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "samce";
@@ -35,7 +35,33 @@ in
     jq
     anki
     tmux
+    obs-studio
+    vlc
+	lua-language-server
+	nil
+	alejandra
+	cargo
+	rustc
+	nodejs
+	bash-language-server
+	hyprls
+	vscode-langservers-extracted
+	quick-lint-js
+	clang-tools
+	kdePackages.qtdeclarative
+	inputs.quickshell.packages.${system}.default
+	python3
+	ripgrep
+	# androidStudioForPlatformPackages.canary
+	# androidStudioPackages.canary# android-studio
+	# androidStudioPackages.canary
+	udiskie
+	# swi-prolog
+	swi-prolog-gui
+	temurin-jre-bin-17
+	typescript-language-server
   ];
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -61,20 +87,20 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # ''
-      ".config/hypr/pywal.sh".text = ''
-        #!/bin/bash
-
-        export WALLPAPER=$(find ~/nixos-config/wallpapers -type f | shuf -n 1)
-
-        # Iniciar swww si no está corriendo
-        if ! pgrep -x swww > /dev/null; then
-            swww-daemon &
-            sleep 1
-        fi
-             
-        # Aplicar el fondo
-        swww img "$WALLPAPER"
-      '';
+      # ".config/hypr/pywal.sh".text = ''
+      #   #!/bin/bash
+      #
+      #   export WALLPAPER=$(find ~/nixos-config/wallpapers -type f | shuf -n 1)
+      #
+      #   # Iniciar swww si no está corriendo
+      #   if ! pgrep -x swww > /dev/null; then
+      #       swww-daemon &
+      #       sleep 1
+      #   fi
+      #        
+      #   # Aplicar el fondo
+      #   swww img "$WALLPAPER"
+      # '';
     
   };
 
