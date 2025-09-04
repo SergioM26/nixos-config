@@ -21,9 +21,19 @@
         "dirhistory"
       ];
     };
+
+    initContent = ''
+      eval "$(direnv hook zsh)"
+	  export EDITOR=nvim
+    '';
   };
 
   programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.direnv = {
     enable = true;
     enableZshIntegration = true;
   };

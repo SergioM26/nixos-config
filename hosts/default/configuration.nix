@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos/pipewire.nix
     ../../modules/nixos/webserver.nix
+    ../../modules/nixos/tlp.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -18,6 +19,7 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = ["kvm-amd"];
 
   # Networking
   networking.hostName = "nixos";
@@ -27,7 +29,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-
+  
   # Nix settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
@@ -35,7 +37,6 @@
   # Shell configuration
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  #environment.shells = with pkgs; [ zsh ];
 
   # Time and locale
   time.timeZone = "America/Monterrey";
@@ -47,12 +48,19 @@
   services.xserver.enable = true;
   services.displayManager.sddm.enable = true;
   programs.hyprland.enable = true;
+  services.udisks2.enable = true;
 
+  # Virtualisation
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+ services.flatpak.enable = true;
+
+nixpkgs.config.android_sdk.accept_license = true;
   # User configuration
   users.users.samce = {
     isNormalUser = true;
     description = "samce";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirtd"];
   };
 
   # Home Manager configuration
@@ -73,14 +81,17 @@
     # Shell
     zsh
     starship
-    
+    direnv
+
     # Desktop
     wofi
     waybar
     pavucontrol
     spotify
     discord
+
     qt5.full
+    pkgs.libsForQt5.layer-shell-qt
     nwg-look
     playerctl
     brightnessctl
@@ -89,5 +100,9 @@
     grim
     slurp
     hyprlock
-  ];
+    jq
+    hypridle
+	wl-clipboard
+	flatpak
+	];
 }
