@@ -7,26 +7,38 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     home-manager = {
-       url = "github:nix-community/home-manager";
-       inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     
-	quickshell = {
-      # add ?ref=<tag> to track a tag
+    quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
-      # THIS IS IMPORTANT
-      # Mismatched system dependencies will lead to crashes and other issues.
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
-    # use "nixos", or your hostname as the name of the configuration
-    # it's a better practice than "default" shown in the video
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-    
-      specialArgs = {inherit inputs;};
+      system = "x86_64-linux";
+
+      specialArgs = { inherit inputs; };
+
+      pkgs = import nixpkgs {
+        system = "x86_64-linux";
+        config = {
+          allowUnfree = true;
+          android_sdk.accept_license = true;
+        };
+        overlays = [
+          (final: prev: {
+			  ciscoPacketTracer8 = prev.ciscoPacketTracer8.overrideAttrs (old: {
+			  src = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+			  sha256 = "0bgplyi50m0dp1gfjgsgbh4dx2f01x44gp3gifnjqbgr3n4vilkc";
+			});
+          })
+        ];
+      };
+
       modules = [
         ./hosts/default/configuration.nix
         inputs.home-manager.nixosModules.home-manager
@@ -34,3 +46,4 @@
     };
   };
 }
+

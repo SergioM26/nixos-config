@@ -20,6 +20,10 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = ["kvm-amd"];
+	boot.extraModulePackages = with config.boot.kernelPackages; [
+    rtw88
+    v4l2loopback
+  ];
 
   # Networking
   networking.hostName = "nixos";
@@ -32,7 +36,7 @@
   
   # Nix settings
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # Shell configuration
   programs.zsh.enable = true;
@@ -54,13 +58,14 @@
   virtualisation.libvirtd.enable = true;
   programs.virt-manager.enable = true;
  services.flatpak.enable = true;
-
-nixpkgs.config.android_sdk.accept_license = true;
+virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true; # opcional, si quieres USB 2/3
+# nixpkgs.config.android_sdk.accept_license = true;
   # User configuration
   users.users.samce = {
     isNormalUser = true;
     description = "samce";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "libvirtd"];
+    extraGroups = [ "networkmanager" "wheel" "vboxusers" /*"kvm"*/ "libvirtd"];
   };
 
   # Home Manager configuration
@@ -103,6 +108,8 @@ nixpkgs.config.android_sdk.accept_license = true;
     jq
     hypridle
 	wl-clipboard
+	cliphist
+	dmenu
 	flatpak
 	];
 }

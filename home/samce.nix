@@ -60,6 +60,12 @@ in
 	swi-prolog-gui
 	temurin-jre-bin-17
 	typescript-language-server
+	code-cursor
+	# virtualboxWithExtpack
+	putty
+	netbeans
+	postman
+	ciscoPacketTracer8
   ];
 
   # This value determines the Home Manager release that your configuration is
