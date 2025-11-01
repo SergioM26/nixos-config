@@ -66,6 +66,17 @@ in
 	netbeans
 	postman
 	ciscoPacketTracer8
+	penpot-desktop
+	lunacy
+	phpactor
+	# lua
+	lua51Packages.lua
+	luajitPackages.luarocks
+	# luajitPackages.jsregexp
+    # lua51Packages.jsregexp
+	tree-sitter
+	fd
+	putty
   ];
 
   # This value determines the Home Manager release that your configuration is

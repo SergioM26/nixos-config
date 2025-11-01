@@ -19,6 +19,8 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+# boot.loader.systemd-boot.enable = false;
+# boot.loader.efi.canTouchEfiVariables = false;
   boot.kernelModules = ["kvm-amd"];
 	boot.extraModulePackages = with config.boot.kernelPackages; [
     rtw88
@@ -55,11 +57,11 @@
   services.udisks2.enable = true;
 
   # Virtualisation
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
+  # virtualisation.libvirtd.enable = true;
+  # programs.virt-manager.enable = true;
  services.flatpak.enable = true;
-virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true; # opcional, si quieres USB 2/3
+# virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true; # opcional, si quieres USB 2/3
 # nixpkgs.config.android_sdk.accept_license = true;
   # User configuration
   users.users.samce = {
@@ -95,8 +97,8 @@ virtualisation.virtualbox.host.enable = true;
     spotify
     discord
 
-    qt5.full
-    pkgs.libsForQt5.layer-shell-qt
+    # qt5.full
+    # pkgs.libsForQt5.layer-shell-qt
     nwg-look
     playerctl
     brightnessctl
