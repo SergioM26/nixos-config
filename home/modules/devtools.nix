@@ -4,8 +4,8 @@
   home.packages = with pkgs; [
     # IDEs y editores
     vim
-    neovim
-    #vscode
+    #neovim
+    vscode
     code-cursor
     qtcreator
  
@@ -20,6 +20,13 @@
     tree
     yazi
   ];
-  programs.vscode.enable = true;
-  programs.vscode.package = pkgs.vscode.fhsWithPackages (ps: with ps; [ gcc]);
+
+
+programs.neovim = {
+  enable = true;
+  withNodeJs = true;
+  withPython3 = true;
+  withRuby = false;
+  extraLuaPackages = ps: with ps; [ jsregexp ];
+};
 } 
