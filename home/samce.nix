@@ -11,9 +11,9 @@ in
 	./modules/tmux.nix
     ./modules/git.nix
 	./modules/yazi.nix
+	./modules/nvim.nix
   ];
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
+
   home.username = "samce";
   home.homeDirectory = "/home/samce";
 
@@ -23,60 +23,11 @@ in
   # Home packages
   home.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
-    swww
-    netflix
-    obsidian
-    inputs.zen-browser.packages.${system}.default 
-    socat
-    ddcutil
-    ddcui
-    mgba
-    azahar
-    jq
-    anki
-    tmux
-    obs-studio
-    vlc
-	lua-language-server
-	nil
-	alejandra
-	cargo
-	rustc
-	nodejs
-	bash-language-server
-	hyprls
-	vscode-langservers-extracted
-	quick-lint-js
-	clang-tools
-	kdePackages.qtdeclarative
+    spotify
+    discord
 	inputs.quickshell.packages.${system}.default
-	python3
-	ripgrep
-	# androidStudioForPlatformPackages.canary
-	# androidStudioPackages.canary# android-studio
-	# androidStudioPackages.canary
-	udiskie
-	# swi-prolog
-	swi-prolog-gui
-	temurin-jre-bin-17
-	typescript-language-server
-	code-cursor
-	# virtualboxWithExtpack
-	putty
-	netbeans
-	postman
-	ciscoPacketTracer8
-	penpot-desktop
-	lunacy
-	phpactor
-	# lua
-	lua51Packages.lua
-	luajitPackages.luarocks
-	# luajitPackages.jsregexp
-    # lua51Packages.jsregexp
-	tree-sitter
-	fd
-	putty
+    # ddcutil
+    # ddcui
   ];
 
   # This value determines the Home Manager release that your configuration is
@@ -89,7 +40,7 @@ in
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
   # Allow unfree packages in home-manager
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -143,14 +94,11 @@ in
   # EDITOR = "emacs";
 
   };
+  
   home.pointerCursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";
-      size = 24;
-      gtk.enable = true;
-  };
-
-
+      size = 24; gtk.enable = true; };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
