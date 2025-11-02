@@ -36,13 +36,4 @@
     tree
     yazi
   ];
-
-
-	programs.neovim = {
-	  enable = true;
-	  withNodeJs = true;
-	  withPython3 = true;
-	  withRuby = false;
-	  extraLuaPackages = ps: with ps; [ jsregexp ];
-	};
 } 
