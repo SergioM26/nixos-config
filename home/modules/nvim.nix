@@ -14,6 +14,7 @@
 	ripgrep
 	typescript-language-server
 	phpactor
+	python313Packages.python-lsp-server
 
 	# Neovim packages
 	tree-sitter
