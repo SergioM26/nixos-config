@@ -26,6 +26,7 @@
 	kdePackages.qtdeclarative
 	ruby
 	go
+	laravel
 
 	#Otras Herramientas
 	putty
