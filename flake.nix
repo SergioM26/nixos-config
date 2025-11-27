@@ -6,6 +6,8 @@
     
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
+	conabio.url = "github:emilianovago99/NixOs";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -17,7 +19,8 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs: {
+
+  outputs = { self, nixpkgs, conabio, ... }@inputs: {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
 
