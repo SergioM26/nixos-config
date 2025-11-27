@@ -10,6 +10,7 @@
     qtcreator
 	code-cursor
 	netbeans
+	swi-prolog
  
     # Herramientas de desarrollo
     git
