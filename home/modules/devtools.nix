@@ -23,6 +23,7 @@
 	temurin-jre-bin-17 # Java
 	lua51Packages.lua
 	kdePackages.qtdeclarative
+	ruby
 
 	#Otras Herramientas
 	putty
