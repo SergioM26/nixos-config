@@ -19,13 +19,14 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+	boot.kernelParams = [ "i8042.nopnp" ];
 
   boot.kernelModules = ["kvm-amd"];
 	boot.extraModulePackages = with config.boot.kernelPackages; [
     rtw88
     v4l2loopback
   ];
-
+powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin/modprobe atkbd reset=1";
   # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;

@@ -27,7 +27,7 @@
 	#Otras Herramientas
 	putty
 	postman
-	ciscoPacketTracer8
+#	ciscoPacketTracer8
 	lunacy
     obsidian
     obs-studio

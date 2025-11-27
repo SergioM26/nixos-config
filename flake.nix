@@ -31,10 +31,10 @@
         };
         overlays = [
           (final: prev: {
-			  ciscoPacketTracer8 = prev.ciscoPacketTracer8.overrideAttrs (old: {
-			  src = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
-			  sha256 = "0bgplyi50m0dp1gfjgsgbh4dx2f01x44gp3gifnjqbgr3n4vilkc";
-			});
+			 # ciscoPacketTracer8 = prev.ciscoPacketTracer8.overrideAttrs (old: {
+			 # src = /nix/store/6hjgf7b5vg9nqa4hl150pxdcs8xf4i15-CiscoPacketTracer822_amd64_signed.deb;
+			 # sha256 = "0bgplyi50m0dp1gfjgsgbh4dx2f01x44gp3gifnjqbgr3n4vilkc";
+#			});
           })
         ];
       };

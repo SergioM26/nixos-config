@@ -4,6 +4,8 @@
   home.packages = with pkgs; [
     jq
     socat
+	zoxide
+	fzf
 	# caligula
   ];
 } 

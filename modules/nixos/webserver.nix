@@ -17,7 +17,7 @@
   services.httpd.virtualHosts = {
     "www.SaludUniversitaria.com" = {
       serverAliases = [ "SaludUniversitaria.com" ];
-      documentRoot = "/home/samce/GitHub/ProyectoPlantaIA";
+      documentRoot = "/home/samce/Github/ProyectoPlantaIA";
       extraConfig = ''
         DirectoryIndex index.php index.html index.htm
         <Directory "/home/samce/GitHub/ProyectoPlantaIA">
@@ -30,10 +30,10 @@
 
   "www.makeitwork.com" = {
     serverAliases = [ "makeitwork.com" ];
-    documentRoot = "/home/samce/GitHub/MakeItWork/public";
+    documentRoot = "/home/samce/Github/makeitwork/public";
     extraConfig = ''
       DirectoryIndex index.php index.html index.htm
-      <Directory "/home/samce/GitHub/MakeItWork/public">
+      <Directory "/home/samce/GitHub/makeitwork/public">
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted

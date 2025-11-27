@@ -94,7 +94,13 @@ in
   # EDITOR = "emacs";
 
   };
-  
+ xdg.desktopEntries.spotify = {
+  name = "Spotify";
+  exec = "spotify --enable-features=UseOzonePlatform --ozone-platform=wayland";
+  icon = "spotify";
+  terminal = false;
+  categories = [ "Audio" "Music" ];
+}; 
   home.pointerCursor = {
       package = pkgs.bibata-cursors;
       name = "Bibata-Modern-Ice";

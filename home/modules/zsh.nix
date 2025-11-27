@@ -25,6 +25,7 @@
     initContent = ''
       eval "$(direnv hook zsh)"
 	  export EDITOR=nvim
+	  eval "$(zoxide init zsh)"
     '';
   };
 
