@@ -25,7 +25,7 @@ in
     nerd-fonts.jetbrains-mono
     spotify
     discord
-	inputs.quickshell.packages.${system}.default
+	# inputs.quickshell.packages.${system}.default
     # ddcutil
     # ddcui
   ];
