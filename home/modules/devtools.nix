@@ -24,6 +24,7 @@
 	lua51Packages.lua
 	kdePackages.qtdeclarative
 	ruby
+	go
 
 	#Otras Herramientas
 	putty
