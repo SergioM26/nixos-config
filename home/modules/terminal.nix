@@ -6,6 +6,7 @@
     socat
 	zoxide
 	fzf
+	pearl
 	# caligula
   ];
 } 
