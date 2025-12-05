@@ -13,20 +13,34 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  # System version
+  # System version  
   system.stateVersion = "25.11";
+
+  # Nix settings
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  environment.variables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-	boot.kernelParams = [ "i8042.nopnp" ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelModules = ["kvm-amd"];
 	boot.extraModulePackages = with config.boot.kernelPackages; [
     rtw88
     v4l2loopback
   ];
-powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin/modprobe atkbd reset=1";
+
+  boot.extraModprobeConfig = ''
+    options ideapad_laptop no_bt_rfkill=1
+  '';
+
+  # Commands After resume
+  powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin/modprobe atkbd reset=1";
+
   # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
@@ -35,14 +49,18 @@ powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-  
-  # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  # nixpkgs.config.allowUnfree = true;
+
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = true;
 
   # Shell configuration
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  # Habilitar atftpd (servidor TFTP). Ajusta path si tu módulo usa tftpd o atftpd.
+  # services.atftpd.enable = true;
+  # services.atftpd.extraOptions = [ "--bind-address" "192.168.1.100" "--verbose=5" ];
+  # services.atftpd.root = "/srv/tftpboot";
 
   # Time and locale
   time.timeZone = "America/Monterrey";
@@ -82,7 +100,6 @@ powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin
   };
   environment.pathsToLink = [ "/share/zsh" ];
   
-
   # System packages
   environment.systemPackages = with pkgs; [
     # Shell
@@ -113,5 +130,5 @@ powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin
 	cliphist
 	dmenu
 	flatpak
-	];
+  ];
 }

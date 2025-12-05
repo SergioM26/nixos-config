@@ -1,4 +1,4 @@
-{ config, pkgs, system, inputs, ... }:
+{ pkgs, inputs, ... }:
 let
     system = "x86_64-linux";
 in
@@ -25,7 +25,7 @@ in
     nerd-fonts.jetbrains-mono
     spotify
     discord
-	# inputs.quickshell.packages.${system}.default
+	inputs.quickshell.packages.${system}.default
     # ddcutil
     # ddcui
   ];

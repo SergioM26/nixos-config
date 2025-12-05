@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -21,17 +21,19 @@
 	cargo
 	rustc
 	nodejs
-	temurin-jre-bin-17 # Java
+	temurin-jre-bin-17 				# Java
 	lua51Packages.lua
 	kdePackages.qtdeclarative
-	ruby
-	go
-	laravel
+	ghc 							#Compilador de Haskell
+	cabal-install 					#Gestor de Haskell
+	# ruby
+	# go
+	# laravel
 
 	#Otras Herramientas
 	putty
 	postman
-#	ciscoPacketTracer8
+	ciscoPacketTracer8
 	lunacy
     obsidian
     obs-studio

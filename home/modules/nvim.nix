@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -15,6 +15,7 @@
 	typescript-language-server
 	phpactor
 	python313Packages.python-lsp-server
+	haskell-language-server
 
 	# Neovim packages
 	tree-sitter

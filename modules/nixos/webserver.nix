@@ -1,5 +1,4 @@
-{ config, pkgs,inputs, ... }:
-
+{ pkgs,... }:
 {
   # Web Server SaludUniversitaria
   networking.extraHosts = ''
@@ -8,6 +7,7 @@
   '';
 
   networking.firewall.allowedTCPPorts = [ 80 443 3000 3001];
+  # networking.firewall.allowedUDPPorts = [ 69 ];
 
   # Web server configuration
   services.httpd.enable = true;
