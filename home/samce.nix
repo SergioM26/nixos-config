@@ -1,17 +1,19 @@
-{ pkgs, inputs, ... }:
-let
-    system = "x86_64-linux";
-in
 {
+  pkgs,
+  inputs,
+  ...
+}: let
+  system = "x86_64-linux";
+in {
   imports = [
     ./modules/zsh.nix
     ./modules/devtools.nix
     ./modules/browser.nix
     ./modules/terminal.nix
-	./modules/tmux.nix
+    ./modules/tmux.nix
     ./modules/git.nix
-	./modules/yazi.nix
-	./modules/nvim.nix
+    ./modules/yazi.nix
+    ./modules/nvim.nix
   ];
 
   home.username = "samce";
@@ -25,7 +27,9 @@ in
     nerd-fonts.jetbrains-mono
     spotify
     discord
-	inputs.quickshell.packages.${system}.default
+    distrobox
+    dosbox
+    inputs.quickshell.packages.${system}.default
     # ddcutil
     # ddcui
   ];
@@ -55,21 +59,20 @@ in
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # ''
-      # ".config/hypr/pywal.sh".text = ''
-      #   #!/bin/bash
-      #
-      #   export WALLPAPER=$(find ~/nixos-config/wallpapers -type f | shuf -n 1)
-      #
-      #   # Iniciar swww si no está corriendo
-      #   if ! pgrep -x swww > /dev/null; then
-      #       swww-daemon &
-      #       sleep 1
-      #   fi
-      #        
-      #   # Aplicar el fondo
-      #   swww img "$WALLPAPER"
-      # '';
-    
+    # ".config/hypr/pywal.sh".text = ''
+    #   #!/bin/bash
+    #
+    #   export WALLPAPER=$(find ~/nixos-config/wallpapers -type f | shuf -n 1)
+    #
+    #   # Iniciar swww si no está corriendo
+    #   if ! pgrep -x swww > /dev/null; then
+    #       swww-daemon &
+    #       sleep 1
+    #   fi
+    #
+    #   # Aplicar el fondo
+    #   swww img "$WALLPAPER"
+    # '';
   };
 
   # Home Manager can also manage your environment variables through
@@ -91,20 +94,21 @@ in
   home.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
-  # EDITOR = "emacs";
-
+    # EDITOR = "emacs";
   };
- xdg.desktopEntries.spotify = {
-  name = "Spotify";
-  exec = "spotify --enable-features=UseOzonePlatform --ozone-platform=wayland";
-  icon = "spotify";
-  terminal = false;
-  categories = [ "Audio" "Music" ];
-}; 
+  xdg.desktopEntries.spotify = {
+    name = "Spotify";
+    exec = "spotify --enable-features=UseOzonePlatform --ozone-platform=wayland";
+    icon = "spotify";
+    terminal = false;
+    categories = ["Audio" "Music"];
+  };
   home.pointerCursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
-      size = 24; gtk.enable = true; };
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+    gtk.enable = true;
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

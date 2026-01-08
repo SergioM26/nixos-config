@@ -1,17 +1,19 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    # enableBashCompletion = true; 
+    # enableBashCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history = {
       size = 10000;
     };
 
-    autocd = true; 
+    autocd = true;
 
     oh-my-zsh = {
       enable = true;
@@ -23,9 +25,9 @@
     };
 
     initContent = ''
-      eval "$(direnv hook zsh)"
-	  export EDITOR=nvim
-	  eval "$(zoxide init zsh)"
+         eval "$(direnv hook zsh)"
+      export EDITOR=nvim
+      eval "$(zoxide init zsh)"
     '';
   };
 
@@ -38,4 +40,4 @@
     enable = true;
     enableZshIntegration = true;
   };
-} 
+}

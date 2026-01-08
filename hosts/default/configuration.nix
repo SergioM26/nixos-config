@@ -1,23 +1,25 @@
 #Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running 'nixos-help').
-
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/nixos/pipewire.nix
     ../../modules/nixos/webserver.nix
-    ../../modules/nixos/tlp.nix
+    # ../../modules/nixos/tlp.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
-  # System version  
+  # System version
   system.stateVersion = "25.11";
 
   # Nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
@@ -29,7 +31,7 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.kernelModules = ["kvm-amd"];
-	boot.extraModulePackages = with config.boot.kernelPackages; [
+  boot.extraModulePackages = with config.boot.kernelPackages; [
     rtw88
     v4l2loopback
   ];
@@ -37,9 +39,6 @@
   boot.extraModprobeConfig = ''
     options ideapad_laptop no_bt_rfkill=1
   '';
-
-  # Commands After resume
-  powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin/modprobe atkbd reset=1";
 
   # Networking
   networking.hostName = "nixos";
@@ -49,6 +48,7 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   services.openssh.enable = true;
   services.openssh.settings.PasswordAuthentication = true;
@@ -73,24 +73,36 @@
   services.displayManager.sddm.enable = true;
   programs.hyprland.enable = true;
   services.udisks2.enable = true;
-  services.flatpak.enable = true;
+  # services.flatpak.enable = true;
 
   # Virtualisation
   # virtualisation.libvirtd.enable = true;
   # programs.virt-manager.enable = true;
   #virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true; # opcional, si quieres USB 2/3
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
 
   # User configuration
   users.users.samce = {
     isNormalUser = true;
     description = "samce";
-    extraGroups = [ "networkmanager" "wheel" /* "vboxusers" "kvm"*/ "libvirtd"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      /*
+      "vboxusers"
+      */
+      "kvm"
+      "libvirtd"
+    ];
   };
 
   # Home Manager configuration
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = {inherit inputs;};
     users = {
       "samce" = import ../../home/samce.nix;
     };
@@ -98,8 +110,11 @@
     useUserPackages = true;
     backupFileExtension = "backup";
   };
-  environment.pathsToLink = [ "/share/zsh" ];
-  
+  environment.pathsToLink = ["/share/zsh"];
+
+  # Commands After resume
+  powerManagement.resumeCommands = "${pkgs.kmod}/bin/rmmod atkbd; ${pkgs.kmod}/bin/modprobe atkbd reset=1";
+
   # System packages
   environment.systemPackages = with pkgs; [
     # Shell
@@ -116,7 +131,7 @@
     waybar
     pavucontrol
     vlc
-	udiskie
+    udiskie
     swww
     nwg-look
     playerctl
@@ -126,9 +141,9 @@
     slurp
     hyprlock
     hypridle
-	wl-clipboard
-	cliphist
-	dmenu
-	flatpak
+    wl-clipboard
+    cliphist
+    dmenu
+    # flatpak
   ];
 }
